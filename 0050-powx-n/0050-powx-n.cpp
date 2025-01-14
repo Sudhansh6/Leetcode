@@ -18,23 +18,22 @@ public:
             ++n; 
             res /= x;
         }
-        
+
         if (n < 0)
         {
             x = 1/x;
             n = -n;
         }
 
-        double curr = x;
 
         while(n > 0)
         {
             if (n % 2 == 1)
             {
-                res *= curr;
+                res *= x;
             }
             n /= 2;
-            curr *= curr;
+            x *= x;
         }
        
         return res;
