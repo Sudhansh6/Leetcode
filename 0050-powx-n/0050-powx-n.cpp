@@ -10,10 +10,23 @@ public:
         } 
         
         if (n == 0) return 1;
-        double res = 1, curr = x;
-        bool neg = n < 0, min = n == INT_MIN;
-        if (min) ++n;
-        if (neg) n *= -1;
+
+        // Much more elegant
+        double res = 1;
+        if (n == INT_MIN) 
+        {
+            ++n; 
+            res /= x;
+        }
+        
+        if (n < 0)
+        {
+            x = 1/x;
+            n = -n;
+        }
+
+        double curr = x;
+
         while(n > 0)
         {
             if (n % 2 == 1)
@@ -23,8 +36,7 @@ public:
             n /= 2;
             curr *= curr;
         }
-        if (neg) res = 1/res;
-        if (min) res /= x;
+       
         return res;
     }
 };
